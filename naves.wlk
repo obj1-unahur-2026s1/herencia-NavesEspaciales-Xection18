@@ -65,7 +65,7 @@ class Nave {
   }
   
   method estaTranquila() {
-    
+    return ((combustible >= 4000) and (velocidad <= 1200))
   }
   
   method recibirAmenaza() {
@@ -118,6 +118,7 @@ class NaveDePasajeros inherits Nave {
   var cantidadDePasajeros
   var cantidadDeRacionesDeComida = 0
   var cantidadDeRacionesDeBebida = 0
+  var cantidadDeRacionesServidas = 0
   
   method cantidadDePasajeros() = cantidadDePasajeros
   
@@ -127,10 +128,12 @@ class NaveDePasajeros inherits Nave {
   
   method cargarRacionesDeComida(cantidad) {
     cantidadDeRacionesDeComida += cantidad
+    cantidadDeRacionesServidas += cantidad
   }
   
   method cargarRacionesDeBebida(cantidad) {
     cantidadDeRacionesDeBebida += cantidad
+    cantidadDeRacionesServidas += cantidad
   }
   
   method descargarRacionesDeComida(cantidad) {
@@ -163,7 +166,7 @@ class NaveDePasajeros inherits Nave {
   }
 
   override method tenerPocaActividad() {
-    return 
+    return cantidadDeRacionesServidas < 50
   }
 
   override method estaDeRelajo() {
